@@ -1,3 +1,5 @@
+from flask import jsonify
+from pymysql import NULL
 from app import db
 import os
 import jwt
@@ -67,12 +69,18 @@ def validate_user(email, password):
         saved_password_salt = current_user[0]["password_salt"]
         password_hash = generate_hash(password, saved_password_salt)
 
-        if password_hash == saved_password_hash:
+        if password_hash == saved_password_hash and current_user[0]["email"] == email:
             user_id = current_user[0]["user_id"]
+            user_username = current_user[0]["username"]
             token = generate_token({"id": user_id})
-            return token
+
+            return jsonify({"error": False, "message": "Login Success", "loginResult":{"token": token, "userid": user_id, "username": user_username}})
+
+        elif current_user[0]["email"] == email and password_hash != saved_password_hash:
+            return jsonify({"error": True, "message": "Wrong Password"})
+
         else:
-            return False
+            return jsonify({"error": True, "message": "Login Failed"})
 
     else:
-        return False
+        return jsonify({"error": True, "message": "Account not found"})

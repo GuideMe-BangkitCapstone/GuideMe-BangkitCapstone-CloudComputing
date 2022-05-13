@@ -14,6 +14,12 @@ app.config["MYSQL_CURSORCLASS"] = "DictCursor"
 db = MySQL(app)
 
 from authentication import authentication
+from places import places
+from detection import detection
 
 app.register_blueprint(authentication, url_prefix="/api/auth")
+
+app.register_blueprint(places, url_prefix="/api/places")
+
+app.register_blueprint(detection, url_prefix="/api/detection")
 

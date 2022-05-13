@@ -41,9 +41,5 @@ def login_user():
     user_email = request.json["email"]
     user_password = request.json["password"]
 
-    user_token = validate_user(user_email, user_password)
+    return validate_user(user_email, user_password)
 
-    if user_token:
-        return jsonify({"token": user_token})
-    else:
-        return jsonify({"error": True, "message": "Login Error"})

@@ -19,6 +19,16 @@ def getDetailPlaces():
 
     return jsonify(data[0])
 
+@places.route("/albums", methods=["GET"])
+def getPlacesAlbums():
+
+    json_data = request.get_json()
+    place_id = json_data['place_id']
+
+    data = db_read("""SELECT * FROM places_albums WHERE place_id = %s""", (place_id,))
+
+    return jsonify(data)
+
 @places.route("/articles", methods=["GET"])
 def getPlacesArticle():
 

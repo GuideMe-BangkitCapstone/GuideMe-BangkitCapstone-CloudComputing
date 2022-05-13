@@ -19,7 +19,7 @@ from detection import detection
 
 app.register_blueprint(authentication, url_prefix="/api/auth")
 
-app.register_blueprint(places, url_prefix="/api/places")
+app.register_blueprint(places, url_prefix="/api/get")
 
 app.register_blueprint(detection, url_prefix="/api/detection")
 

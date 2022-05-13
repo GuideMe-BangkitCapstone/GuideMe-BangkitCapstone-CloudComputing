@@ -12,22 +12,17 @@ authentication = Blueprint("authentication", __name__)
 @authentication.route("/register", methods=["POST"])
 def register_user():
 
-    json_data = request.get_json()
-    user_email = json_data['email']
-    user_username = json_data['username']
-    user_fullname = json_data['fullname']
-    user_password = json_data['password']
-    user_confirm_password = json_data['confirm_password']
+    user = request.get_json()
 
-    if user_password == user_confirm_password and validate_user_input(
-        "authentication", email=user_email, password=user_password
+    if user['password'] == user['confirm_password'] and validate_user_input(
+        "authentication", email=user['email'], password=user['password']
     ):
         password_salt = generate_salt()
-        password_hash = generate_hash(user_password, password_salt)
+        password_hash = generate_hash(user['password'], password_salt)
 
         if db_write(
             """INSERT INTO users (email, username, fullname, password_salt, password_hash) VALUES (%s, %s, %s, %s, %s)""",
-            (user_email, user_username, user_fullname, password_salt, password_hash),
+            (user['email'], user['username'], user['fullname'], password_salt, password_hash),
         ):
             return jsonify({"error": False, "message": "User Created"})
         else:

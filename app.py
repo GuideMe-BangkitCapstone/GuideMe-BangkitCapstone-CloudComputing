@@ -1,5 +1,5 @@
 # app.py
-from flask import Flask
+from flask import Flask, Blueprint, request, Response, jsonify
 from flask_cors import CORS
 from flask_mysqldb import MySQL
 from settings import MYSQL_USER, MYSQL_PASSWORD, MYSQL_DB
@@ -13,7 +13,10 @@ app.config["MYSQL_CURSORCLASS"] = "DictCursor"
 
 db = MySQL(app)
 
+from blueprint_auth import authentication
+
+app.register_blueprint(authentication, url_prefix="/api/auth")
+
 @app.route('/')
 def hello_world():
     return 'Hello, World!'
-

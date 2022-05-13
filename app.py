@@ -13,10 +13,7 @@ app.config["MYSQL_CURSORCLASS"] = "DictCursor"
 
 db = MySQL(app)
 
-from blueprint_auth import authentication
+from authentication import authentication
 
 app.register_blueprint(authentication, url_prefix="/api/auth")
 
-@app.route('/')
-def hello_world():
-    return 'Hello, World!'

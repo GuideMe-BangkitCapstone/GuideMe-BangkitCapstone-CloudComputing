@@ -1,5 +1,4 @@
-from flask import Blueprint, request, Response, jsonify, request_started
-from utils import db_read
+from flask import Blueprint
 
 detection = Blueprint("detection", __name__)
 

@@ -7,6 +7,7 @@ from settings import JWT_SECRET_KEY
 from flask_mysqldb import MySQLdb
 from hashlib import pbkdf2_hmac
 
+
 def db_read(query, params=None):
     cursor = db.connection.cursor()
     if params:

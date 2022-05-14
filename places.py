@@ -30,9 +30,9 @@ def getPlacesAlbums():
     json_data = request.get_json()
     place_id = json_data['place_id']
 
-    data = db_read("""SELECT * FROM places_albums WHERE place_id = %s""", (place_id,))
+    data = db_read("""SELECT * FROM places_album WHERE place_id = %s""", (place_id,))
 
-    return jsonify(data)
+    return jsonify({"error": False, "message": "Photo fetched successfully", "listPhoto": data})
 
 @places.route("/articles", methods=["GET"])
 def getPlacesArticle():
@@ -45,6 +45,7 @@ def getPlacesArticle():
     return jsonify(data)
 
 places.route("/visithistory", methods=["GET"])
+@token_required
 def getUserVisitHistory():
 
     json_data = request.get_json()

@@ -12,7 +12,7 @@ authentication = Blueprint("authentication", __name__)
 @authentication.route("/register", methods=["POST"])
 def register_user():
 
-    user = request.get_json()
+    user = request.form
 
     if user['password'] == user['confirm_password'] and validate_user_input(
         "authentication", email=user['email'], password=user['password']
@@ -33,8 +33,7 @@ def register_user():
 
 @authentication.route("/login", methods=["POST"])
 def login_user():
-    user_email = request.json["email"]
-    user_password = request.json["password"]
+    user = request.form
 
-    return validate_user(user_email, user_password)
+    return validate_user(user['email'], user['password'])
 

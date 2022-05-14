@@ -14,15 +14,15 @@ def register_user():
 
     user = request.form
 
-    if user['password'] == user['confirm_password'] and validate_user_input(
+    if validate_user_input(
         "authentication", email=user['email'], password=user['password']
     ):
         password_salt = generate_salt()
         password_hash = generate_hash(user['password'], password_salt)
 
         if db_write(
-            """INSERT INTO users (email, username, fullname, password_salt, password_hash) VALUES (%s, %s, %s, %s, %s)""",
-            (user['email'], user['username'], user['fullname'], password_salt, password_hash),
+            """INSERT INTO users (email, fullname, password_salt, password_hash) VALUES (%s, %s, %s, %s)""",
+            (user['email'], user['fullname'], password_salt, password_hash),
         ):
             return jsonify({"error": False, "message": "User Created"})
         else:

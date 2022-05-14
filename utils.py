@@ -89,12 +89,11 @@ def validate_user(email, password):
 
         if password_hash == saved_password_hash and current_user[0]["email"] == email:
             user_id = current_user[0]["user_id"]
-            user_username = current_user[0]["username"]
             user_fullname = current_user[0]["fullname"]
             user_email = current_user[0]["email"]
             token = generate_token({"id": user_id})
 
-            return jsonify({"error": False, "message": "Login Success", "loginResult":{"token": token, "userid": user_id, "username": user_username, "email": user_email, "fullname": user_fullname}})
+            return jsonify({"error": False, "message": "Login Success", "loginResult":{"token": token, "userid": user_id, "email": user_email, "fullname": user_fullname}})
 
         elif current_user[0]["email"] == email and password_hash != saved_password_hash:
             return jsonify({"error": True, "message": "Wrong Password"})

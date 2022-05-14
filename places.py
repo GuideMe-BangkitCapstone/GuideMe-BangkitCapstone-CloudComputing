@@ -1,15 +1,20 @@
 from flask import Blueprint, request, Response, jsonify, request_started
-from utils import db_read
+from utils import db_read, token_required
+from flask_jwt import JWT, jwt_required, current_identity
 
 places = Blueprint("places", __name__)
 
+
+
 @places.route("/allplaces", methods=["GET"])
+@token_required
 def getAllPlaces():
     data = db_read("""SELECT name, photo_url FROM places""")
     
     return jsonify({"error": False, "message": "Places fetched successfully", "listPlaces": data})
 
 @places.route("/place", methods=["GET"])
+@token_required
 def getDetailPlaces():
 
     json_data = request.get_json()

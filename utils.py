@@ -1,4 +1,4 @@
-from flask import jsonify
+from flask import jsonify, request
 from pymysql import NULL
 from app import db
 import os
@@ -6,7 +6,6 @@ import jwt
 from settings import JWT_SECRET_KEY
 from flask_mysqldb import MySQLdb
 from hashlib import pbkdf2_hmac
-
 
 def db_read(query, params=None):
     cursor = db.connection.cursor()
@@ -52,7 +51,8 @@ def generate_hash(plain_password, password_salt):
 
 def generate_token(content):
     encoded_content = jwt.encode(content, JWT_SECRET_KEY, algorithm="HS256")
-    token = str(encoded_content).split("'")[0]
+    token = str(encoded_content).split("'")[1]
+
     return token
 
 def validate_user_input(input_type, **kwargs):

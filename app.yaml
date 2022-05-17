@@ -1,10 +1,9 @@
-runtime: python37
-env: flexible
+runtime: python
 
 env_variables:
-  MYSQL_UNIX_SOCKET: "/cloudsql/guideme-bangkitcapstone-01:asia-southeast2:guideme-bangkitcapstone"
-  MYSQL_USER: "guideme-bangkitcapstone"
+  MYSQL_UNIX_SOCKET: "/cloudsql/guideme-capstoneproject:asia-southeast2:guideme-bangkitcapstone"
+  MYSQL_USER: "root"
   MYSQL_PASSWORD: "guideme1"
   MYSQL_DB: "GuideMe"
   MYSQL_CURSORCLASS: "DictCursor"
-  MYSQL_HOST: "34.101.218.88"
+  MYSQL_HOST: "34.101.246.136"

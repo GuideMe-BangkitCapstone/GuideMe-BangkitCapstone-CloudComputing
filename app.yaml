@@ -13,7 +13,9 @@ resources:
   disk_size_gb: 10
 
 env_variables:
-  CLOUD_SQL_USERNAME:
-  CLOUD_SQL_PASSWORD:
-  CLOUD_SQL_DATABASE_NAME:
-  CLOUD_SQL_CONNECTION_NAME:
+  MYSQL_UNIX_SOCKET: "/cloudsql/guideme-bangkitcapstone-01:asia-southeast2:guideme-bangkitcapstone"
+  MYSQL_USER: "root"
+  MYSQL_PASSWORD: "guideme1"
+  MYSQL_DB: "GuideMe"
+  MYSQL_CURSORCLASS: "DictCursor"
+  MYSQL_HOST: "34.101.218.88"

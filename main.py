@@ -2,21 +2,22 @@
 from flask import Flask, Blueprint, request, Response, jsonify
 from flask_cors import CORS
 from flask_mysqldb import MySQL
-from settings import MYSQL_USER, MYSQL_PASSWORD, MYSQL_DB
+import os
 
 app = Flask(__name__)
 
-app.config["MYSQL_USER"] = MYSQL_USER
-app.config["MYSQL_PASSWORD"] = MYSQL_PASSWORD
-app.config["MYSQL_DB"] = MYSQL_DB
-app.config["MYSQL_CURSORCLASS"] = "DictCursor"
+app.config['MYSQL_HOST'] = "34.101.218.88"
+app.config['MYSQL_UNIX_SOCKET'] = "guideme-bangkitcapstone-01:asia-southeast2:guideme-bangkitcapstone"
+app.config['MYSQL_USER'] =  "guideme-bangkitcapstone"
+app.config['MYSQL_PASSWORD'] = "guideme1"
+app.config['MYSQL_DB'] = "GuideMe"
+app.config['MYSQL_CURSORCLASS'] = "DictCursor"
 
 db = MySQL(app)
 
 from authentication import authentication
 from places import places
 from detection import detection
-
 
 #TEST
 @app.route('/')

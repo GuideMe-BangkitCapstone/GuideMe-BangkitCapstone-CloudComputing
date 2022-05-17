@@ -7,11 +7,11 @@ import pymysql
 
 app = Flask(__name__)
 
-app.config['MYSQL_HOST'] = "34.101.246.136"
-app.config['MYSQL_UNIX_SOCKET'] = "/cloudsql/guideme-capstoneproject:asia-southeast2:guideme-bangkitcapstone"
-app.config['MYSQL_USER'] =  "root"
+app.config['MYSQL_HOST'] = "34.101.218.88"
+app.config['MYSQL_UNIX_SOCKET'] = "/cloudsql/guideme-bangkitcapstone-01:asia-southeast2:guideme-bangkitcapstone"
+app.config['MYSQL_USER'] =  "guideme-bangkitcapstone"
 app.config['MYSQL_PASSWORD'] = "guideme1"
-app.config['MYSQL_DB'] = "guideme"
+app.config['MYSQL_DB'] = "GuideMe"
 app.config['MYSQL_CURSORCLASS'] = "DictCursor"
 
 db = pymysql.connect(user="root", password="guideme1",

@@ -1,6 +1,6 @@
 from functools import wraps
 from flask import jsonify, request
-from app import db
+from main import db
 import os
 import jwt
 from settings import JWT_SECRET_KEY

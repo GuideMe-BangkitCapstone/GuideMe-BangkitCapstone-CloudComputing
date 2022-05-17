@@ -7,7 +7,7 @@ import os
 app = Flask(__name__)
 
 app.config['MYSQL_HOST'] = "34.101.218.88"
-app.config['MYSQL_UNIX_SOCKET'] = "guideme-bangkitcapstone-01:asia-southeast2:guideme-bangkitcapstone"
+app.config['MYSQL_UNIX_SOCKET'] = "/cloudsql/guideme-bangkitcapstone-01:asia-southeast2:guideme-bangkitcapstone"
 app.config['MYSQL_USER'] =  "guideme-bangkitcapstone"
 app.config['MYSQL_PASSWORD'] = "guideme1"
 app.config['MYSQL_DB'] = "GuideMe"

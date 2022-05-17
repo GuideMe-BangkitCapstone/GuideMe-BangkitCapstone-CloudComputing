@@ -14,7 +14,7 @@ resources:
 
 env_variables:
   MYSQL_UNIX_SOCKET: "/cloudsql/guideme-bangkitcapstone-01:asia-southeast2:guideme-bangkitcapstone"
-  MYSQL_USER: "root"
+  MYSQL_USER: "guideme-bangkitcapstone"
   MYSQL_PASSWORD: "guideme1"
   MYSQL_DB: "GuideMe"
   MYSQL_CURSORCLASS: "DictCursor"

@@ -1,5 +1,6 @@
 from functools import wraps
 from flask import jsonify, request
+import pymysql
 from main import db
 import os
 import jwt
@@ -49,7 +50,7 @@ def db_write(query, params):
 
         return True
 
-    except MySQLdb._exceptions.IntegrityError:
+    except pymysql._exceptions.IntegrityError:
         cursor.close()
         return False
 

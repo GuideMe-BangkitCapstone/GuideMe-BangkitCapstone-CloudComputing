@@ -3,6 +3,7 @@ from flask import Flask, Blueprint, request, Response, jsonify
 from flask_cors import CORS
 from flask_mysqldb import MySQL
 import os
+import pymysql
 
 app = Flask(__name__)
 
@@ -13,7 +14,8 @@ app.config['MYSQL_PASSWORD'] = "guideme1"
 app.config['MYSQL_DB'] = "guideme"
 app.config['MYSQL_CURSORCLASS'] = "DictCursor"
 
-db = MySQL(app)
+db = pymysql.connect(user="root", password="guideme1",
+                              unix_socket="/cloudsql/guideme-capstoneproject:asia-southeast2:guideme-bangkitcapstone", db="guideme")
 
 from authentication import authentication
 from places import places

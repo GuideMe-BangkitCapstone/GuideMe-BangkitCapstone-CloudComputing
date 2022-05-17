@@ -14,8 +14,7 @@ app.config['MYSQL_PASSWORD'] = "guideme1"
 app.config['MYSQL_DB'] = "GuideMe"
 app.config['MYSQL_CURSORCLASS'] = "DictCursor"
 
-db = pymysql.connect(user="root", password="guideme1",
-                              unix_socket="/cloudsql/guideme-capstoneproject:asia-southeast2:guideme-bangkitcapstone", db="guideme")
+db = MySQL(app)
 
 from authentication import authentication
 from places import places

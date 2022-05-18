@@ -7,7 +7,6 @@ places = Blueprint("places", __name__)
 
 
 @places.route("/allplaces", methods=["GET"])
-@token_required
 def getAllPlaces():
     data = db_read("""SELECT name, photo_url FROM places""")
     

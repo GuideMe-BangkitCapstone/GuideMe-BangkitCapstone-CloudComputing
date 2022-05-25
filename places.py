@@ -1,10 +1,8 @@
 from flask import Blueprint, request, Response, jsonify, request_started
-from utils import db_read, token_required
+from utils import db_read, db_write, token_required
 from flask_jwt import JWT, jwt_required, current_identity
 
 places = Blueprint("places", __name__)
-
-
 
 @places.route("/allplaces", methods=["GET"])
 def getAllPlaces():
@@ -54,3 +52,16 @@ def getUserVisitHistory():
 
     return jsonify(data)
 
+places.route("/deletehistory", methods=["GET"])
+@token_required
+def getUserVisitHistory():
+
+    json_data = request.get_json()
+    user_id = json_data["user_id"]
+
+    state = db_write("""DELETE FROM users_visit_history WHERE user_id = %s""", (user_id,))
+
+    if state:
+        return jsonify({"error": False, "message": "Success"})
+    else:
+        return jsonify({"error": True, "message": "Error deleting history"})

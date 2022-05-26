@@ -1,5 +1,6 @@
 from flask import Blueprint, request, Response, jsonify, request_started
 from utils import (
+    db_read,
     validate_user_input,
     generate_salt,
     generate_hash,
@@ -36,4 +37,14 @@ def login_user():
     user = request.form
 
     return validate_user(user['email'], user['password'])
+
+@authentication.route("/getdetail", methods=["GET"])
+def getDetailUser():
+
+    json_data = request.args
+    user_id = json_data['user_id']
+
+    data = db_read("""SELECT email, fullname, user_id FROM users WHERE user_id = %s""", (user_id,))
+
+    return jsonify(data[0])
 

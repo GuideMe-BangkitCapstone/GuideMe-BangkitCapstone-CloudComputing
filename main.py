@@ -2,15 +2,13 @@
 from flask import Flask, Blueprint, request, Response, jsonify
 from flask_cors import CORS
 from flask_mysqldb import MySQL
-import os
-import pymysql
 
 app = Flask(__name__)
 
-app.config['MYSQL_HOST'] = "10.11.208.3"
-app.config['MYSQL_UNIX_SOCKET'] = "/cloudsql/guideme-capstoneproject:asia-southeast2:guideme-bangkitcapstone"
+# app.config['MYSQL_HOST'] = "10.11.208.3"
+# app.config['MYSQL_UNIX_SOCKET'] = "/cloudsql/guideme-capstoneproject:asia-southeast2:guideme-bangkitcapstone"
 app.config['MYSQL_USER'] = "root"
-app.config['MYSQL_PASSWORD'] = "guideme1"
+app.config['MYSQL_PASSWORD'] = ""
 app.config['MYSQL_DB'] = "guideme"
 app.config['MYSQL_CURSORCLASS'] = "DictCursor"
 

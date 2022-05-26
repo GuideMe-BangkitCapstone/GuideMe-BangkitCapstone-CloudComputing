@@ -18,7 +18,7 @@ def token_required(f):
        if not token:
            return jsonify({'message': 'a valid token is missing'})
        try:
-           data = jwt.decode(token, JWT_SECRET_KEY, algorithm="HS256")
+            jwt.decode(token, JWT_SECRET_KEY, algorithm="HS256")
        except:
            return jsonify({'message': 'token is invalid'})
  
@@ -70,6 +70,7 @@ def generate_hash(plain_password, password_salt):
 def generate_token(content):
     encoded_content = jwt.encode(content, JWT_SECRET_KEY, algorithm="HS256")
     token = str(encoded_content).split("'")[1]
+    # token = encoded_content
 
     return token
 
@@ -93,8 +94,9 @@ def validate_user(email, password):
             user_fullname = current_user[0]["fullname"]
             user_email = current_user[0]["email"]
             token = generate_token({"id": user_id})
+            data = {"error": False, "message": "Login Success", "loginResult":{"token": token, "userid": user_id, "email": user_email, "fullname": user_fullname}}
 
-            return jsonify({"error": False, "message": "Login Success", "loginResult":{"token": token, "userid": user_id, "email": user_email, "fullname": user_fullname}})
+            return jsonify(data)
 
         elif current_user[0]["email"] == email and password_hash != saved_password_hash:
             return jsonify({"error": True, "message": "Wrong Password"})

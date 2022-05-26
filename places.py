@@ -37,9 +37,9 @@ def getPlacesArticle():
     json_data = request.get_json()
     place_id = json_data['place_id']
 
-    data = db_read("""SELECT * FROM article WHERE id = %s""", (place_id,))
+    data = db_read("""SELECT * FROM article WHERE place_id = %s""", (place_id,))
 
-    return jsonify(data)
+    return jsonify({"error": False, "message": "Article fetched successfully", "listArticle": data})
 
 places.route("/visithistory", methods=["GET"])
 @token_required

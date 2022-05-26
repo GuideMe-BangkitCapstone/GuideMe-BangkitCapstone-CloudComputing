@@ -14,7 +14,7 @@ def getAllPlaces():
 @token_required
 def getDetailPlaces():
 
-    json_data = request.get_json()
+    json_data = request.args
     place_name = json_data['name']
 
     data = db_read("""SELECT * FROM places WHERE name = %s""", (place_name,))
@@ -24,7 +24,7 @@ def getDetailPlaces():
 @places.route("/albums", methods=["GET"])
 def getPlacesAlbums():
 
-    json_data = request.get_json()
+    json_data = request.args
     place_id = json_data['place_id']
 
     data = db_read("""SELECT * FROM places_album WHERE place_id = %s""", (place_id,))
@@ -34,7 +34,7 @@ def getPlacesAlbums():
 @places.route("/articles", methods=["GET"])
 def getPlacesArticle():
 
-    json_data = request.get_json()
+    json_data = request.args
     place_id = json_data['place_id']
 
     data = db_read("""SELECT * FROM article WHERE place_id = %s""", (place_id,))

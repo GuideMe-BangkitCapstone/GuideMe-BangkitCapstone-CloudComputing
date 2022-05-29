@@ -41,22 +41,22 @@ def getPlacesArticle():
 
     return jsonify({"error": False, "message": "Article fetched successfully", "listArticle": data})
 
-places.route("/visithistory", methods=["GET"])
+@places.route("/visithistory", methods=["GET"])
 @token_required
 def getUserVisitHistory():
 
-    json_data = request.get_json()
+    json_data = request.args
     user_id = json_data["user_id"]
 
-    data = db_read("""SELECT * FROM users_visit_history WHERE user_id = %s""", (user_id,))
+    data = db_read("""SELECT * FROM users_visit_history INNER JOIN places ON users_visit_history.place_id = places.place_id WHERE user_id = %s""", (user_id,))
 
-    return jsonify(data)
+    return jsonify({"error": False, "message": "History fetched successfully", "listHistory": data})
 
-places.route("/deletehistory", methods=["GET"])
+@places.route("/deletehistory", methods=["GET"])
 @token_required
-def getUserVisitHistory():
+def deleteUserVisitHistory():
 
-    json_data = request.get_json()
+    json_data = request.args
     user_id = json_data["user_id"]
 
     state = db_write("""DELETE FROM users_visit_history WHERE user_id = %s""", (user_id,))

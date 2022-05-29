@@ -29,7 +29,7 @@ def register_user():
         else:
             return jsonify({"error": True, "message": "User Not Created"})
     else:
-        return Response(status=400)
+        return jsonify({"error" : True, "message": "Email already taken"})
 
 
 @authentication.route("/login", methods=["POST"])

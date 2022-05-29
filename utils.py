@@ -76,8 +76,12 @@ def generate_token(content):
 
 def validate_user_input(input_type, **kwargs):
     if input_type == "authentication":
+        current_user = db_read("""SELECT * FROM users WHERE email = %s""", (kwargs["email"],))
         if len(kwargs["email"]) <= 255 and len(kwargs["password"]) <= 255:
-            return True
+            if len(current_user) == 0:
+                return True
+            else:
+                return False
         else:
             return False
 

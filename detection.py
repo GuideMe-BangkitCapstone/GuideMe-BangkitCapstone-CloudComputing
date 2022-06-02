@@ -1,9 +1,11 @@
+import json
+from tkinter import Place
 import tensorflow as tf
 from PIL import Image
 import numpy as np
 from flask import Blueprint, request, Response, jsonify, request_started
 import io
-from utils import token_required
+from utils import db_read, db_write, token_required
 
 
 def load_model():
@@ -25,7 +27,7 @@ def prepare_dataset(image, target):
 
 detection = Blueprint("detection", __name__)
 
-@detection.route("/", methods=["GET"])
+@detection.route("/", methods=["POST"])
 @token_required
 def predict():
 
@@ -52,14 +54,27 @@ def predict():
 
 	return jsonify(data)
 
-@detection.route("/dummy", methods=["GET"])
+@detection.route("/dummy/guideme", methods=["POST"])
 @token_required
-def dummyEndpoint():
+def dummyEndpointGuideMe():
 
-	data = {"success":False}
+	data = {"error": True}
 
 	if request.method == "POST":
+		user_id = request.args
 		if request.files.get("image"):
-			data["success"] = True
+			data["error"] = False
+			data["message"] = "Success"
+			data["place_name"] = "Candi Borobudur"
+			place = db_read("""SELECT * FROM places WHERE name = %s""", (data["place_name"],))
+			place_id = place[0]["place_id"]
+			user_id = int(user_id["user_id"])
+			db_write("""INSERT INTO users_visit_history (user_id, place_id) VALUES (%s, %s)""",(user_id, place_id),)
+		else:
+			data["error"] = True
+			data["message"] = "Can't get Image"
+	else:
+		data["error"] = True
+		data["message"] = "Wrong Method"
     
 	return jsonify(data)

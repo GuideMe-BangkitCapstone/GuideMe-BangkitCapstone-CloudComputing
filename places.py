@@ -49,7 +49,7 @@ def getPlacesArticle():
 @token_required
 def getUserVisitHistory(user_id):
     data = None
-    data = db_read("""SELECT * FROM users_visit_history INNER JOIN places ON users_visit_history.place_id = places.place_id WHERE user_id = %s""", (user_id,))
+    data = db_read("""SELECT history_id, user_id, name, created_at FROM users_visit_history INNER JOIN places ON users_visit_history.place_id = places.place_id WHERE user_id = %s""", (user_id,))
 
     if data != None:
         return jsonify({"error": False, "message": "History fetched successfully", "listHistory": data})

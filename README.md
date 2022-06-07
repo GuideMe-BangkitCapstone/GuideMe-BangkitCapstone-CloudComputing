@@ -152,7 +152,7 @@ or
 - Query Parameter :
 ```json
 {
-    "name": "Prambanan"
+    "name": "Candi Borobudur"
 }
 ```
 
@@ -197,6 +197,15 @@ or
 }
 ```
 
+- Respone Body (Fail):
+```json
+{
+  "error": true, 
+  "message": "Failed to fetch", 
+  "listPhoto": null
+}
+```
+
 # Get Place Articles
 - Endpoint : `/api/get/article`
 - HTTP Method : `GET`
@@ -225,6 +234,15 @@ or
 }
 ```
 
+- Respone Body (Fail):
+```json
+{
+  "error": true, 
+  "message": "Failed to fetch", 
+  "listArticle": null
+}
+```
+
 # Get User Visit History
 - Endpoint : `/api/get/visithistory`
 - HTTP Method : `GET`
@@ -234,9 +252,24 @@ or
 - Respone Body (Success):
 ```json
 {
-  "error": false,
-  "listHistory": [],
-  "message": "History fetched successfully"
+    "error": false,
+    "listHistory": [
+        {
+            "created_at": "Tue, 07 Jun 2022 00:00:00 GMT",
+            "history_id": 10,
+            "name": "Candi Borobudur",
+            "user_id": 15
+        }
+    ],
+    "message": "History fetched successfully"
+}
+```
+- Respone Body (Fail):
+```json
+{
+  "error": true, 
+  "message": "Failed to fetch", 
+  "listHistory": null
 }
 ```
 
@@ -271,8 +304,7 @@ or
   - Authorization : `Bearer {Token}`
   
 - Request Body :
-  * user_id as integer
-  * image as file
+  - `image` as `file`
 
 - Respone Body (Success):
 ```json

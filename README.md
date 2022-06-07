@@ -7,12 +7,16 @@
 - Endpoint : /api/auth/login
 - HTTP Method : POST
 - Request Body :
+
+```json
   {
     "email": "iu@mail.com",
     "password": "123456"
   }
+```
 
 - Respone Body (Success):
+```json
   {
   "error": false,
     "loginResult": {
@@ -23,6 +27,7 @@
     },
     "message": "Login Success"
   }
+  ```
 
 - Respone Body (Fail):
   {

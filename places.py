@@ -52,7 +52,7 @@ def getUserVisitHistory():
 
     return jsonify({"error": False, "message": "History fetched successfully", "listHistory": data})
 
-@places.route("/deletehistory", methods=["GET"])
+@places.route("/deletehistory", methods=["DELETE"])
 @token_required
 def deleteUserVisitHistory():
 

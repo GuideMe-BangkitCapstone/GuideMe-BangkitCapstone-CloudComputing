@@ -30,25 +30,32 @@
   ```
 
 - Respone Body (Fail):
+```json
   {
     "error": true,
     "message": "Wrong Password"
   }
+```
 or
+```json
   {
     "error": true,
     "message": "Account not found"
   }
+ ```
 
 # register_user
+
 - Endpoint : /api/auth/register
 - HTTP Method : POST
 - Request Body :
+```json
   {
     "email": "iu@mail.com",
     "password_salt": "123456",
     "password_hash": "123456"
   }
+ ```
 
 - Respone Body (Success):
   {

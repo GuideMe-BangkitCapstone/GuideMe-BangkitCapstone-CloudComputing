@@ -1,6 +1,7 @@
-from flask import Blueprint, request, Response, jsonify, request_started
+from flask import Blueprint, request, jsonify
 from utils import (
     db_read,
+    token_required,
     validate_user_input,
     generate_salt,
     generate_hash,
@@ -39,6 +40,7 @@ def login_user():
     return validate_user(user['email'], user['password'])
 
 @authentication.route("/getdetail", methods=["GET"])
+@token_required
 def getDetailUser():
 
     json_data = request.args

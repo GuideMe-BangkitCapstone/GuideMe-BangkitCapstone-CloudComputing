@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from utils import (
+from app.utils import (
     db_read,
     token_required,
     validate_user_input,

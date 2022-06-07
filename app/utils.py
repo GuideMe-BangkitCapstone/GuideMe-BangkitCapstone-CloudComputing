@@ -1,10 +1,10 @@
 from functools import wraps
 from flask import jsonify, request
 import pymysql
-from main import db
+from app.main import db
 import os
 import jwt
-from settings import JWT_SECRET_KEY
+from app.settings import JWT_SECRET_KEY
 from hashlib import pbkdf2_hmac
 
 def token_required(f):

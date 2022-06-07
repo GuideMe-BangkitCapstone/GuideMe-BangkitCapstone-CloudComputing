@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from utils import db_read, db_write, token_required
+from app.utils import db_read, db_write, token_required
 
 places = Blueprint("places", __name__)
 

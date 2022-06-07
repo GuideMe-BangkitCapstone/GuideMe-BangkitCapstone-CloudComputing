@@ -108,14 +108,6 @@ or
 - Respone Body (Success):
 ```json
 {
-  "error": False,
-  "message": "Places fetched successfully",
-  "listPlaces": data
-}
-```
-- Respone Body (Fail):
-```json
-{
     "error": false,
     "listPlaces": [
         {
@@ -133,6 +125,14 @@ or
     ],
     "message": "Places fetched successfully"
 }
+```
+- Respone Body (Fail):
+```json
+{
+    "error": true,
+    "message": "Failed to get places"
+}
+
 ```
 
 # Get Detail Place
@@ -255,7 +255,7 @@ or
 - Respone Body (Success):
 ```json
 {
-  "error": False,
+  "error": false,
   "message": "Success"
 }
 ```
@@ -263,7 +263,7 @@ or
 - Respone Body (Fail):
 ```json
 {
-  "error": True, 
+  "error": true, 
   "message": "Error deleting history"
 }
 ```
@@ -283,7 +283,7 @@ or
 - Respone Body (Success):
 ```json
 {
-  "error": False, 
+  "error": false, 
   "message": "Success", 
   "places_name":"Candi Borobudur"
 }
@@ -291,14 +291,14 @@ or
 - Respone Body (Fail):
 ```json
 {
-  "error": True, 
+  "error": true, 
   "message": "Can't get Image"
 }
 ```
 or
 ```json
 {
-  "error": True, 
+  "error": true, 
   "message": "Wrong Method"
 }
 ```

@@ -14,5 +14,4 @@ else:
 
     app.config.from_object("config.ProductionConfig")
 
-
-from app import main
+from app import routes

@@ -1,16 +1,16 @@
-# app.py
-from flask import Flask, Blueprint, request, Response, jsonify
-from flask_cors import CORS
+from flask import Flask
 from flask_mysqldb import MySQL
+
+from settings import MYSQL_CURSORCLASS, MYSQL_DB, MYSQL_PASSWORD, MYSQL_USER, MYSQL_UNIX_SOCKET, MYSQL_HOST 
 
 app = Flask(__name__)
 
-# app.config['MYSQL_HOST'] = "10.11.208.3"
-# app.config['MYSQL_UNIX_SOCKET'] = "/cloudsql/guideme-capstoneproject:asia-southeast2:guideme-bangkitcapstone"
-app.config['MYSQL_USER'] = "root"
-app.config['MYSQL_PASSWORD'] = ""
-app.config['MYSQL_DB'] = "guideme"
-app.config['MYSQL_CURSORCLASS'] = "DictCursor"
+app.config['MYSQL_HOST'] = MYSQL_HOST
+app.config['MYSQL_UNIX_SOCKET'] = MYSQL_UNIX_SOCKET
+app.config['MYSQL_USER'] = MYSQL_USER
+app.config['MYSQL_PASSWORD'] = MYSQL_PASSWORD
+app.config['MYSQL_DB'] = MYSQL_DB
+app.config['MYSQL_CURSORCLASS'] = MYSQL_CURSORCLASS
 
 db = MySQL(app)
 
@@ -21,7 +21,7 @@ from detection import detection
 #TEST
 @app.route('/')
 def hello():
-    return 'Hello World!'
+    return 'Welcome to GuideMe Private EndPoint'
 
 app.register_blueprint(authentication, url_prefix="/api/auth")
 

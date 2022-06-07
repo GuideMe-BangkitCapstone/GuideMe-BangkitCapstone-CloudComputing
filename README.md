@@ -4,8 +4,11 @@
 - Base Endpoint : https://capstone-project-guideme.et.r.appspot.com/
 
 # Login User
-- Endpoint : /api/auth/login
-- HTTP Method : POST
+- Endpoint : `/api/auth/login`
+- HTTP Method : `POST`
+- Request Header :
+  - Accept : `x-www-form-urlencoded`
+
 - Request Body :
 
 ```json
@@ -16,6 +19,7 @@
 ```
 
 - Respone Body (Success):
+
 ```json
   {
   "error": false,
@@ -30,6 +34,7 @@
   ```
 
 - Respone Body (Fail):
+
 ```json
   {
     "error": true,
@@ -37,6 +42,7 @@
   }
 ```
 or
+
 ```json
   {
     "error": true,
@@ -46,9 +52,13 @@ or
 
 # Register User
 
-- Endpoint : /api/auth/register
-- HTTP Method : POST
+- Endpoint : `/api/auth/register`
+- HTTP Method : ``POST``
+- Request Header :
+  - Accept : `x-www-form-urlencoded`
+
 - Request Body :
+
 ```json
   {
     "email": "iu@mail.com",
@@ -81,10 +91,10 @@ or
 ```
 
 # Get User Detail 
-- Endpoint : /api/auth/getdetail
-- HTTP Method : GET
+- Endpoint : `/api/auth/getdetail`
+- HTTP Method : `GET`
 - Request Header :
-  - x-access-tokens : '{token}'
+  - Authorization : `Bearer {Token}`
 
 - Query Parameter :
 ```json
@@ -102,8 +112,8 @@ or
 }
 ```
 # Get All Places
-- Endpoint : /api/get/allplaces
-- HTTP Method : GET
+- Endpoint : `/api/get/allplaces`
+- HTTP Method : `GET`
 
 - Respone Body (Success):
 ```json
@@ -136,10 +146,8 @@ or
 ```
 
 # Get Detail Place
-- Endpoint : /api/get/place
-- HTTP Method : GET
-- Request Header :
-  - x-access-tokens : '{token}'
+- Endpoint : `/api/get/place`
+- HTTP Method : `GET`
 
 - Query Parameter :
 ```json
@@ -160,8 +168,8 @@ or
 ```
 
 # Get Place Albums
-- Endpoint : /api/get/album
-- HTTP Method : GET
+- Endpoint : `/api/get/album`
+- HTTP Method : `GET`
 - Query Parameter :
 ```json
 {
@@ -190,8 +198,8 @@ or
 ```
 
 # Get Place Articles
-- Endpoint : /api/get/article
-- HTTP Method : GET
+- Endpoint : `/api/get/article`
+- HTTP Method : `GET`
 - Query Parameter :
 ```json
 {
@@ -218,17 +226,10 @@ or
 ```
 
 # Get User Visit History
-- Endpoint : /api/get/visithistory
-- HTTP Method : GET
+- Endpoint : `/api/get/visithistory`
+- HTTP Method : `GET`
 - Request Header :
-  - x-access-tokens : '{token}'
-
-- Query Parameter :
-```json
-{
-  "user_id":"1"
-}
-```
+  - Authorization : `Bearer {Token}`
 
 - Respone Body (Success):
 ```json
@@ -240,17 +241,10 @@ or
 ```
 
 # Delete User Visit History
-- Endpoint : /api/get/deletehistory
-- HTTP Method : DELETE
+- Endpoint : `/api/get/deletehistory`
+- HTTP Method : `DELETE`
 - Request Header :
-  - x-access-tokens : '{token}'
-
-- Query Parameter :
-```json
-{
-  "user_id":"1"
-}
-```
+  - Authorization : `Bearer {Token}`
 
 - Respone Body (Success):
 ```json
@@ -271,10 +265,10 @@ or
 # Dummy Detection Endpoint ( For Testing )
 ### Waiting for ML path to complete the ML Model 
 
-- Endpoint : /api/dummy/guideme
-- HTTP Method : POST
+- Endpoint : `/api/dummy/guideme`
+- HTTP Method : `POST`
 - Request Header :
-  - x-access-tokens : '{token}'
+  - Authorization : `Bearer {Token}`
   
 - Request Body :
   * user_id as integer

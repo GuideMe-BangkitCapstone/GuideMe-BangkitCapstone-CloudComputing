@@ -56,19 +56,17 @@ detection = Blueprint("detection", __name__)
 
 @detection.route("/dummy/guideme", methods=["POST"])
 @token_required
-def dummyEndpointGuideMe():
+def dummyEndpointGuideMe(user_id):
 
 	data = {"error": True}
 
 	if request.method == "POST":
-		user_id = request.args
 		if request.files.get("image"):
 			data["error"] = False
 			data["message"] = "Success"
 			data["place_name"] = "Candi Borobudur"
 			place = db_read("""SELECT * FROM places WHERE name = %s""", (data["place_name"],))
 			place_id = place[0]["place_id"]
-			user_id = int(user_id["user_id"])
 			db_write("""INSERT INTO users_visit_history (user_id, place_id) VALUES (%s, %s)""",(user_id, place_id),)
 		else:
 			data["error"] = True

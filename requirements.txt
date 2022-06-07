@@ -27,3 +27,4 @@ werkzeug
 wrapt
 numpy
 pillow
+uWSGI==2.0.18

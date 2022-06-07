@@ -94,7 +94,7 @@ or
 }
 - Respone Body (Fail):
 {
--
+""
 }
 
 # detailplaces
@@ -180,4 +180,24 @@ or
 - Respone Body (Fail):
 {
 "error": True, "message": "Error deleting history"
+}
+
+# dumyEndpointGuideMe
+- Endpoint : /api/dummy/guideme
+- HTTP Method : POST
+- Request Body :
+{
+"places_name":"Candi Borobudur"
+}
+- Respone Body (Success):
+{
+"error": False, "message": "Success", "places_name":"Candi Borobudur", "user_id":"1", "place_id":"1"
+}
+- Respone Body (Fail):
+{
+"error": True, "message": "Can't get Image"
+}
+or
+{
+"error": True, "message": "Wrong Method"
 }

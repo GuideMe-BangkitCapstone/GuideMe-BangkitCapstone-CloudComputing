@@ -96,13 +96,6 @@ or
 - Request Header :
   - Authorization : `Bearer {Token}`
 
-- Query Parameter :
-```json
-  {
-  "user_id" : 7
-  }
-```
-
 - Respone Body (Success):
 ```json
 {

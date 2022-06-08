@@ -1,8 +1,8 @@
 # JWT Config
-MYSQL_HOST = ""
-MYSQL_UNIX_SOCKET = ""
+MYSQL_HOST = "localhost:mysql"
+MYSQL_UNIX_SOCKET = "/var/run/mysqld/mysqld.sock"
 MYSQL_USER = "root"
-MYSQL_PASSWORD = ""
+MYSQL_PASSWORD = "guideme1"
 MYSQL_DB = "guideme"
 MYSQL_CURSORCLASS = "DictCursor"
 

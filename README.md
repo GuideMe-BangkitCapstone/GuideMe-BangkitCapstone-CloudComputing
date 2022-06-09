@@ -23,7 +23,7 @@
 ```json
   {
   "error": false,
-    "loginResult": {
+  "loginResult": {
         "email": "iu@mail.com",
         "fullname": "Lee Ji Eun",
         "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6N30.0aPgaQwzL2vmNhtHs7M2qodXIgXMWPiSpwmYe3UDFZI",
@@ -70,7 +70,7 @@ or
 - Respone Body (Success):
 ```json
   {
-     "error": false,
+    "error": false,
     "message": "User Created"
   }
 ```
@@ -326,40 +326,5 @@ or
 {
   "error": true, 
   "message": "Not Detected"
-}
-```
-
-
-# Dummy Detection Endpoint ( For Testing )
-### Waiting for ML path to complete the ML Model 
-
-- Endpoint : `/api/dummy/guideme`
-- HTTP Method : `POST`
-- Request Header :
-  - Authorization : `Bearer {Token}`
-  
-- Request Body :
-  - `image` as `file`
-
-- Respone Body (Success):
-```json
-{
-  "error": false, 
-  "message": "Success", 
-  "places_name":"Candi Borobudur"
-}
-```
-- Respone Body (Fail):
-```json
-{
-  "error": true, 
-  "message": "Can't get Image"
-}
-```
-or
-```json
-{
-  "error": true, 
-  "message": "Wrong Method"
 }
 ```

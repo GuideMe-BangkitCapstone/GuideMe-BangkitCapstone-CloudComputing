@@ -1,7 +1,7 @@
 # GuideMe-BangkitCapstone-CloudComputing
 - GuideMe: Wherever you go, you know
 
-- Base Endpoint VM Instance : `http://34.101.245.166/`
+- Base Endpoint VM Instance ( Backup ): `http://34.101.245.166/`
 
 # Login User
 - Endpoint : `/api/auth/login`

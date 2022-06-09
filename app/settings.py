@@ -1,8 +1,8 @@
 # JWT Config
-MYSQL_HOST = "34.101.74.227"
-MYSQL_UNIX_SOCKET = "/cloudsql/guideme-bangkitcapstone-gce:asia-southeast2:guideme-bangkitcapstone"
+MYSQL_HOST = ""
+MYSQL_UNIX_SOCKET = ""
 MYSQL_USER = "root"
-MYSQL_PASSWORD = "guideme1"
+MYSQL_PASSWORD = ""
 MYSQL_DB = "guideme"
 MYSQL_CURSORCLASS = "DictCursor"
 

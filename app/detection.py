@@ -1,78 +1,75 @@
-import json
-# from tkinter import Place
-# import tensorflow as tf
+import tensorflow as tf
+from keras.models import load_model 
+from keras.preprocessing import image
 from PIL import Image
 import numpy as np
-from flask import Blueprint, request, Response, jsonify, request_started
-import io
+from flask import Blueprint, request, jsonify
 from app.utils import db_read, db_write, token_required
-
-
-# def load_model():
-	
-# 	global model
-# 	model = tf.keras.applications.ResNet50(weights="imagenet")
-
-# def prepare_dataset(image, target):
-
-# 	if image.mode != "RGB":
-# 		image= image.convert("RGB")
-
-# 	image = image.resize(target)
-# 	image = tf.keras.preprocessing.image.img_to_array(image)
-# 	image = np.expand_dims(image, axis=0)
-# 	image = tf.keras.applications.imagenet_utils.preprocess_input(image)
-
-# 	return image
+import os
+import io
 
 detection = Blueprint("detection", __name__)
 
-# @detection.route("/", methods=["POST"])
-# @token_required
-# def predict():
+def prepare_dataset(image, target):
 
-# 	data = {"success":False}
+	if image.mode != "RGB":
+		image= image.convert("RGB")
 
-# 	if request.method == "POST":
-# 		if request.files.get("image"):
+	image = image.resize(target)
+	image = tf.keras.preprocessing.image.img_to_array(image)
+	image = np.expand_dims(image, axis=0)
+	image = tf.keras.applications.imagenet_utils.preprocess_input(image)
 
-# 			image = request.files["image"].read()
-# 			image = Image.open(io.BytesIO(image))
+	return image
 
-# 			image = prepare_dataset(image, target=(224,224))
-
-# 			preds = model.predict(image)
-# 			results = tf.keras.applications.imagenet_utils.decode_predictions(preds)
-
-# 			data["predictions"] = []
-
-# 			for (_, label, prob) in results[0]:
-# 				r = {"label": label, "probablity": float(prob)}
-# 				data["predictions"].append(r)
-
-# 			data["success"] = True
-
-# 	return jsonify(data)
-
-@detection.route("/dummy/guideme", methods=["POST"])
+@detection.route("/", methods=["POST"])
 @token_required
-def dummyEndpointGuideMe(user_id):
+def placeDetection(user_id):
 
-	data = {"error": True}
+	data = {
+		"error":True,
+		"place_name": None,
+		"message": None
+	}
 
-	if request.method == "POST":
-		if request.files.get("image"):
-			data["error"] = False
-			data["message"] = "Success"
-			data["place_name"] = "Candi Borobudur"
-			place = db_read("""SELECT * FROM places WHERE name = %s""", (data["place_name"],))
-			place_id = place[0]["place_id"]
-			db_write("""INSERT INTO users_visit_history (user_id, place_id) VALUES (%s, %s)""",(user_id, place_id),)
+	path_name = "app/model.h5"
+	labels = ["Monumen Nasional (Monas)", "Candi Prambanan"]
+ 
+	if os.path.isfile(path_name):
+		print("File exists")
+		model = load_model(path_name)
+
+		if request.method == "POST":
+			if request.files.get("image"):
+
+				image = request.files['image'].read()
+				image = Image.open(io.BytesIO(image))
+				image = prepare_dataset(image, target=(416,416))
+				preds = model.predict(image, batch_size=5)
+
+				if(preds[0][np.argmax(preds[0])]>=0.8):
+					data["place_name"] = labels[np.argmax(preds[0])]
+					try:
+						place = db_read("""SELECT * FROM places WHERE name = %s""", (data["place_name"],))
+						place_id = place[0]["place_id"]
+						db_write("""INSERT INTO users_visit_history (user_id, place_id) VALUES (%s, %s)""",(user_id, place_id),)
+						data["error"] = False
+					except:
+						data["error"] = True
+						data["message"] = "Under Construction! Currently not available in our databases"
+				else:
+					data["error"] = True
+					data["message"] = "Not Detected"
+			else:
+				data["error"] = True
+				data["message"] = "Can't get Image"
 		else:
 			data["error"] = True
-			data["message"] = "Can't get Image"
+			data["message"] = "Wrong Method"
+
+
 	else:
 		data["error"] = True
-		data["message"] = "Wrong Method"
-    
+		data["message"] = "Model File Is Missing!"
+
 	return jsonify(data)

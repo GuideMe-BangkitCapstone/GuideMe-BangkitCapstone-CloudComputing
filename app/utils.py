@@ -13,12 +13,13 @@ def token_required(f):
         token = None
         if 'Authorization' in request.headers:
             token = request.headers['Authorization'].split(" ")[1]
-    
+            print(token)
         if not token:
             return jsonify({'message': 'a valid token is missing'})
         try:
-            data = jwt.decode(token, JWT_SECRET_KEY, algorithm="HS256")
+            data = jwt.decode(token, JWT_SECRET_KEY, algorithms=['HS256'])
         except:
+            data = jwt.decode(token, JWT_SECRET_KEY, algorithms=['HS256'])
             return jsonify({'message': 'token is invalid'})
 
         return f(data['id'], *args, **kwargs)
@@ -67,7 +68,7 @@ def generate_hash(plain_password, password_salt):
     return password_hash.hex()
 
 def generate_token(content):
-    encoded_content = jwt.encode(content, JWT_SECRET_KEY, algorithm="HS256")
+    encoded_content = jwt.encode(content, JWT_SECRET_KEY, algorithm='HS256')
     token = str(encoded_content).split("'")[1]
 
     return token

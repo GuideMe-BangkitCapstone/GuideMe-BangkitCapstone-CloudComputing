@@ -1,9 +1,14 @@
 # GuideMe-BangkitCapstone-CloudComputing
-- GuideMe: Wherever you go, you know
+![Wherever you go, you know](https://user-images.githubusercontent.com/69246482/172912779-65b0304c-1b78-4985-92e0-976572356a86.png)
+
+## App Description
+This application was built using Flask using the python programming language and deployed into the Google Compute Engine. This application is used to provide endpoints for the mobile applications that we have built.
 
 - Base Endpoint VM Instance ( Backup ): `http://34.101.245.166/`
 
-# Login User
+## Endpoint List
+
+### Login User
 - Endpoint : `/api/auth/login`
 - HTTP Method : `POST`
 - Request Header :
@@ -50,7 +55,7 @@ or
   }
  ```
 
-# Register User
+### Register User
 
 - Endpoint : `/api/auth/register`
 - HTTP Method : ``POST``
@@ -90,7 +95,7 @@ or
   }
 ```
 
-# Get User Detail 
+### Get User Detail 
 - Endpoint : `/api/auth/getdetail`
 - HTTP Method : `GET`
 - Request Header :
@@ -104,7 +109,7 @@ or
     "user_id": 7
 }
 ```
-# Get All Places
+### Get All Places
 - Endpoint : `/api/get/allplaces`
 - HTTP Method : `GET`
 
@@ -138,7 +143,7 @@ or
 
 ```
 
-# Get Detail Place
+### Get Detail Place
 - Endpoint : `/api/get/place`
 - HTTP Method : `GET`
 
@@ -160,7 +165,7 @@ or
 }
 ```
 
-# Get Place Albums
+### Get Place Albums
 - Endpoint : `/api/get/album`
 - HTTP Method : `GET`
 - Query Parameter :
@@ -199,7 +204,7 @@ or
 }
 ```
 
-# Get Place Articles
+### Get Place Articles
 - Endpoint : `/api/get/article`
 - HTTP Method : `GET`
 - Query Parameter :
@@ -236,7 +241,7 @@ or
 }
 ```
 
-# Get User Visit History
+### Get User Visit History
 - Endpoint : `/api/get/visithistory`
 - HTTP Method : `GET`
 - Request Header :
@@ -267,7 +272,7 @@ or
 }
 ```
 
-# Delete User Visit History
+### Delete User Visit History
 - Endpoint : `/api/get/deletehistory`
 - HTTP Method : `DELETE`
 - Request Header :
@@ -289,7 +294,7 @@ or
 }
 ```
 
-# Detection 
+### Detection 
 
 - Endpoint : `/api/detection`
 - HTTP Method : `POST`
@@ -328,3 +333,47 @@ or
   "message": "Not Detected"
 }
 ```
+
+## Development
+
+### Requirements
+* A Mac or Windows or Linux computer.
+* Python 3.7.1
+
+### Library
+```Requirements
+Flask==2.1.2
+Flask-Cors==3.0.10
+Flask-JWT==0.3.2
+Flask-MySQL==1.5.2
+Flask-MySQLdb==1.0.1
+PyJWT==1.4.2
+keras==2.9.0
+Keras-Preprocessing==1.1.2
+mysqlclient==2.1.0
+tensorboard==2.9.0
+tensorboard-data-server==0.6.1
+tensorboard-plugin-wit==1.8.1
+tensorflow==2.9.1
+tensorflow-estimator==2.9.0
+tensorflow-io-gcs-filesystem==0.26.0
+```
+
+### Clone this App
+
+**Clone**
+```bash
+$ git clone https://github.com/GuideMe-BangkitCapstone/GuideMe-BangkitCapstone-CloudComputing.git
+```
+
+**Run this app**
+```bash
+$ cd GuideMe-BangkitCapstone-CloudComputing
+```
+```bash
+$ pip install -r requirements.txt
+```
+```bash
+$ flask run
+```
+

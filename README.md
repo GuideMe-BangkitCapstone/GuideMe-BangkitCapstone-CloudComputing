@@ -1,7 +1,7 @@
 # GuideMe-BangkitCapstone-CloudComputing
 - GuideMe: Wherever you go, you know
 
-- Base Endpoint VM Instance : http://34.101.245.166/
+- Base Endpoint VM Instance : `http://34.101.245.166/`
 
 # Login User
 - Endpoint : `/api/auth/login`
@@ -248,9 +248,10 @@ or
     "error": false,
     "listHistory": [
         {
-            "created_at": "Tue, 07 Jun 2022 00:00:00 GMT",
-            "history_id": 10,
-            "name": "Candi Borobudur",
+            "created_at": "Thu, 09 Jun 2022 16:50:24 GMT",
+            "history_id": 29,
+            "name": "Monumen Nasional (Monas)",
+            "photo_url": "https://upload.wikimedia.org/wikipedia/id/thumb/b/b1/Merdeka_Square_Monas_02.jpg/240px-Merdeka_Square_Monas_02.jpg",
             "user_id": 15
         }
     ],
@@ -287,6 +288,47 @@ or
   "message": "Error deleting history"
 }
 ```
+
+# Detection 
+
+- Endpoint : `/api/detection`
+- HTTP Method : `POST`
+- Request Header :
+  - Authorization : `Bearer {Token}`
+  
+- Request Body :
+  - `image` as `file`
+
+- Respone Body (Success):
+```json
+{
+    "error": false,
+    "message": null,
+    "place_name": "Monumen Nasional (Monas)"
+}
+```
+- Respone Body (Fail):
+```json
+{
+  "error": true, 
+  "message": "Can't get Image"
+}
+```
+or
+```json
+{
+  "error": true, 
+  "message": "Wrong Method"
+}
+```
+or
+```json
+{
+  "error": true, 
+  "message": "Not Detected"
+}
+```
+
 
 # Dummy Detection Endpoint ( For Testing )
 ### Waiting for ML path to complete the ML Model 

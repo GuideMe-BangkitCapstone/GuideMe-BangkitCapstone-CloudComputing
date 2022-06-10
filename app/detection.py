@@ -11,8 +11,6 @@ import io
 detection = Blueprint("detection", __name__)
 
 labels = ["Monumen Nasional (Monas)", "Candi Prambanan"]
-path_name = "app/model.h5"
-model = load_model(path_name)
 
 def prepare_dataset(image, target):
 
@@ -25,6 +23,9 @@ def prepare_dataset(image, target):
 	image = tf.keras.applications.imagenet_utils.preprocess_input(image)
 
 	return image
+
+path_name = "app/model.h5"
+model = load_model("app/model.h5")
 
 @detection.route("/", methods=["POST"])
 @token_required

@@ -11,8 +11,6 @@ import io
 detection = Blueprint("detection", __name__)
 
 labels = ["Monumen Nasional (Monas)", "Candi Prambanan"]
-path_name = "app/model.h5"
-model = load_model("app/model.h5")
 
 def prepare_dataset(image, target):
 
@@ -29,6 +27,8 @@ def prepare_dataset(image, target):
 @detection.route("/", methods=["POST"])
 @token_required
 def placeDetection(user_id):
+	path_name = "app/model.h5"
+	model = load_model("app/model.h5")
 
 	data = {
 		"error":True,

@@ -24,8 +24,8 @@ def prepare_dataset(image, target):
 
 	return image
 
-path_name = "app/model.h5"
-model = load_model("app/model.h5")
+path_name = "model.h5"
+model = load_model(path_name)
 
 @detection.route("/", methods=["POST"])
 @token_required

@@ -22,9 +22,6 @@ def prepare_dataset(image, target):
 
 	return image
 
-path_name = "app/model.h5"
-model = load_model(path_name)
-
 @detection.route("/", methods=["POST"])
 @token_required
 def placeDetection(user_id):
@@ -35,9 +32,11 @@ def placeDetection(user_id):
 		"message": "Error!"
 	}
 
+	path_name = "app/model.h5"
 	labels = ["Monumen Nasional (Monas)", "Candi Prambanan"]
  
 	if os.path.isfile(path_name):
+		model = load_model(path_name)
 		if request.method == "POST":
 			if request.files.get("image"):
 

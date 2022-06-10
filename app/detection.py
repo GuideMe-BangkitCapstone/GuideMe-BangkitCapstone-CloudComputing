@@ -29,16 +29,14 @@ def placeDetection(user_id):
 	data = {
 		"error":True,
 		"place_name": None,
-		"message": None
+		"message": "Error!"
 	}
 
 	path_name = "app/model.h5"
 	labels = ["Monumen Nasional (Monas)", "Candi Prambanan"]
  
 	if os.path.isfile(path_name):
-		print("File exists")
 		model = load_model(path_name)
-
 		if request.method == "POST":
 			if request.files.get("image"):
 
@@ -54,6 +52,7 @@ def placeDetection(user_id):
 						place_id = place[0]["place_id"]
 						db_write("""INSERT INTO users_visit_history (user_id, place_id) VALUES (%s, %s)""",(user_id, place_id),)
 						data["error"] = False
+						data["message"] = "Success"
 					except:
 						data["error"] = True
 						data["message"] = "Under Construction! Currently not available in our databases"
@@ -66,8 +65,6 @@ def placeDetection(user_id):
 		else:
 			data["error"] = True
 			data["message"] = "Wrong Method"
-
-
 	else:
 		data["error"] = True
 		data["message"] = "Model File Is Missing!"

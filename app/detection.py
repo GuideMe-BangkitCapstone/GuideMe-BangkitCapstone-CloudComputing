@@ -27,6 +27,8 @@ def prepare_dataset(image, target):
 @detection.route("/", methods=["POST"])
 @token_required
 def placeDetection(user_id):
+	model = None
+	preds = None
 	path_name = "app/model.h5"
 	model = load_model("app/model.h5")
 
@@ -39,6 +41,7 @@ def placeDetection(user_id):
 	if os.path.isfile(path_name):
 		if request.method == "POST":
 			if request.files.get("image"):
+				image = None
 				image = request.files['image'].read()
 				image = Image.open(io.BytesIO(image))
 				image = prepare_dataset(image, target=(416,416))

@@ -30,7 +30,6 @@ def placeDetection(user_id):
 	model = None
 	preds = None
 	path_name = "app/model.h5"
-	model = load_model("app/model.h5")
 
 	data = {
 		"error":True,
@@ -39,6 +38,7 @@ def placeDetection(user_id):
 	}
  
 	if os.path.isfile(path_name):
+		model = load_model("app/model.h5")
 		if request.method == "POST":
 			if request.files.get("image"):
 				image = None

@@ -10,6 +10,10 @@ import io
 
 detection = Blueprint("detection", __name__)
 
+labels = ["Monumen Nasional (Monas)", "Candi Prambanan"]
+path_name = "app/model.h5"
+model = load_model(path_name)
+
 def prepare_dataset(image, target):
 
 	if image.mode != "RGB":
@@ -31,15 +35,10 @@ def placeDetection(user_id):
 		"place_name": None,
 		"message": "Error!"
 	}
-
-	path_name = "app/model.h5"
-	labels = ["Monumen Nasional (Monas)", "Candi Prambanan"]
  
 	if os.path.isfile(path_name):
-		model = load_model(path_name)
 		if request.method == "POST":
 			if request.files.get("image"):
-
 				image = request.files['image'].read()
 				image = Image.open(io.BytesIO(image))
 				image = prepare_dataset(image, target=(416,416))

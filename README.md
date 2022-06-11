@@ -4,6 +4,7 @@
 ## App Description
 This application was built using Flask using the python programming language and deployed into the Google Compute Engine. This application is used to provide endpoints for the mobile applications that we have built.
 
+- Base Endpoint VM Instance: `http://34.101.190.100/`
 - Base Endpoint VM Instance ( Backup ): `http://34.101.245.166/`
 
 ## Endpoint List

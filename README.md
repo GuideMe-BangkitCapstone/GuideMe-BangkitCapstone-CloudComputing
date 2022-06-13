@@ -309,7 +309,7 @@ or
 ```json
 {
     "error": false,
-    "message": null,
+    "message": "Success",
     "place_name": "Monumen Nasional (Monas)"
 }
 ```
@@ -318,6 +318,7 @@ or
 {
   "error": true, 
   "message": "Can't get Image"
+  "place_name": null
 }
 ```
 or
@@ -325,6 +326,7 @@ or
 {
   "error": true, 
   "message": "Wrong Method"
+  "place_name": null
 }
 ```
 or
@@ -332,6 +334,7 @@ or
 {
   "error": true, 
   "message": "Not Detected"
+  "place_name": null
 }
 ```
 
@@ -358,6 +361,7 @@ tensorboard-plugin-wit==1.8.1
 tensorflow==2.9.1
 tensorflow-estimator==2.9.0
 tensorflow-io-gcs-filesystem==0.26.0
+uWSGI==2.0.18
 ```
 
 ### Clone this App
